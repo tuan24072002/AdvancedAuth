@@ -1,12 +1,12 @@
 {
-  "name": "be",
+  "name": "backend",
   "version": "1.0.0",
-  "main": "be/index.js",
+  "main": "backend/index.js",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon be/index.js",
-    "start": "cross-env NODE_ENV=production node be/index.js",
-    "build": "npm install && npm install --prefix fe && npm run build --prefix fe"
+    "dev": "cross-env NODE_ENV=development nodemon backend/index.js",
+    "start": "cross-env NODE_ENV=production node backend/index.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
