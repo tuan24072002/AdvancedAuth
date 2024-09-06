@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 import axios from 'axios'
-
+const API_URL = import.meta.env.MODE === "development" ? "http://localhost:1234/api/auth" : '/api/auth'
 axios.defaults.withCredentials = true;
 export const useAuthStore = create((set) => (
     {
@@ -16,7 +16,7 @@ export const useAuthStore = create((set) => (
             set({ isLoading: true, error: null });
             try {
                 const res = await axios.post(
-                    `${import.meta.env.VITE_SERVER_URL}/api/auth/signup`,
+                    `${API_URL}/signup`,
                     { email, password, name }
                 );
                 if (res.data.success) {
@@ -40,7 +40,7 @@ export const useAuthStore = create((set) => (
             set({ isLoading: true, error: null });
             try {
                 const res = await axios.post(
-                    `${import.meta.env.VITE_SERVER_URL}/api/auth/login`,
+                    `${API_URL}/login`,
                     { email, password }
                 );
                 if (res.data.success) {
@@ -64,7 +64,7 @@ export const useAuthStore = create((set) => (
             set({ isLoading: true, error: null });
             try {
                 const res = await axios.post(
-                    `${import.meta.env.VITE_SERVER_URL}/api/auth/logout`,
+                    `${API_URL}/logout`,
                 );
                 if (res.data.success) {
                     set({
@@ -90,7 +90,7 @@ export const useAuthStore = create((set) => (
             set({ isLoading: true, error: null });
             try {
                 const res = await axios.post(
-                    `${import.meta.env.VITE_SERVER_URL}/api/auth/verify-email`,
+                    `${API_URL}/verify-email`,
                     { code }
                 );
                 if (res.data.success) {
@@ -118,7 +118,7 @@ export const useAuthStore = create((set) => (
                 error: null
             })
             try {
-                const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/auth/check-auth`)
+                const res = await axios.get(`${API_URL}/check-auth`)
                 if (res.data.success) {
                     set({
                         user: res.data.user,
@@ -139,7 +139,7 @@ export const useAuthStore = create((set) => (
             set({ isLoading: true, error: null });
             try {
                 const res = await axios.post(
-                    `${import.meta.env.VITE_SERVER_URL}/api/auth/forgot-password`,
+                    `${API_URL}/forgot-password`,
                     { email }
                 );
                 if (res.data.success) {
@@ -163,7 +163,7 @@ export const useAuthStore = create((set) => (
             set({ isLoading: true, error: null });
             try {
                 const res = await axios.post(
-                    `${import.meta.env.VITE_SERVER_URL}/api/auth/reset-password/${token}`,
+                    `${API_URL}/reset-password/${token}`,
                     { password, confirmPassword }
                 );
                 if (res.data.success) {
@@ -187,7 +187,7 @@ export const useAuthStore = create((set) => (
             set({ isLoading: true, error: null });
             try {
                 const res = await axios.post(
-                    `${import.meta.env.VITE_SERVER_URL}/api/auth/resend-verify-email`,
+                    `${API_URL}/resend-verify-email`,
                     { email }
                 );
                 if (res.data.success) {
